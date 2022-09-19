@@ -84,17 +84,17 @@ public class IfElseStatementTheme {
             System.out.println(" - в числах нет одинаковых цифр");
         }
 
-        System.out.println("\n 5. Определение буквы, числа или символа по их коду");
+        System.out.println("\n5. Определение буквы, числа или символа по их коду");
         char ch = '\u0057';
         System.out.print("Введенный символ " + "'" + ch + "' - ");
-        if (ch < '0' || ch > '9' && ch < 'A' || ch > 'Z' && ch < 'a' || ch > 'z') {
-            System.out.println("не буква и не число");
-        } else if (ch >= '0' && ch <= '9') {
+        if (ch >= '0' && ch <= '9') {
             System.out.println("число");
         } else if (ch >= 'A' && ch <= 'Z') {
             System.out.println("большая буква");
-        } else {
+        } else if (ch >= 'a' && ch <= 'z') {
             System.out.println("маленькая буква");
+        } else {
+            System.out.println("не буква и не число");
         }
 
         System.out.println("\n6. Определение суммы вклада и начисленных банком %");
@@ -155,15 +155,12 @@ public class IfElseStatementTheme {
         System.out.println("\n9. Подсчет количества банкнот");
         int sum = 567;
         int maxBanknote10 = 5;
-        int cntBanknote1;
-        int cntBanknote10;
-        int cntBanknote100;
-        cntBanknote100 = sum / 100;
-        cntBanknote10 = (sum - 100 * cntBanknote100) / 10;
+        int cntBanknote100 = sum / 100;
+        int cntBanknote10 = (sum - 100 * cntBanknote100) / 10;
         if (cntBanknote10 > maxBanknote10) {
             cntBanknote10 = maxBanknote10;
         }
-        cntBanknote1 = sum - (100 * cntBanknote100 + 10 * cntBanknote10);
+        int cntBanknote1 = sum - (100 * cntBanknote100 + 10 * cntBanknote10);
         System.out.println("Количество банкнот номиналом 1$: " + cntBanknote1);
         System.out.println("Количество банкнот номиналом 10$: " + cntBanknote10);
         System.out.println("Количество банкнот номиналом 100$: " + cntBanknote100);

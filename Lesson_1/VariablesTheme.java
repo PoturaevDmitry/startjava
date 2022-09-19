@@ -1,49 +1,52 @@
 public class VariablesTheme {
     public static void main(String[] args) {
         System.out.println("1. Создание переменных и вывод их значений на консоль");
-        byte screen = 15;
-        short cores = 8;
-        int bits = 64;
-        long disc = 512L;
+        byte screenSize = 15;
+        short coresCpu = 8;
+        int bitsCpu = 64;
+        long discSize = 512L;
         float freqCpu = 1.8f;
-        double ram = 16.0;
-        char os = 'W';
+        double ramSize = 16.0;
+        char osType = 'W';
         boolean desktop = false;
         System.out.println("Информация о компьютере:");
-        System.out.println("\t- операционная система (W/U -Windows/UNIX) - " + os);
+        System.out.println("\t- операционная система (W/U -Windows/UNIX) - " + osType);
         System.out.println("\t - тип компьютера (true/false - настольный/ноутбук) - " + desktop);
-        System.out.println("\t - размер экрана - " + screen);
-        System.out.println("\t - разрядность процессора - " + bits);
-        System.out.println("\t - количество ядер процессора - " + cores);
+        System.out.println("\t - размер экрана - " + screenSize);
+        System.out.println("\t - разрядность процессора - " + bitsCpu);
+        System.out.println("\t - количество ядер процессора - " + coresCpu);
         System.out.println("\t - частота процессора - " + freqCpu);
-        System.out.println("\t - размер ОЗУ - " + ram + "ГБ");
-        System.out.println("\t - размер диска - " + disc + "ГБ");
+        System.out.println("\t - размер ОЗУ - " + ramSize + "ГБ");
+        System.out.println("\t - размер диска - " + discSize + "ГБ");
 
         System.out.println("\n2. Расчет стоимости товара со скидкой");
-        int pen = 100;
-        int book = 200;
+        int costPen = 100;
+        int costBook = 200;
         int percentDiscount = 11;
-        double discount = (pen + book) * percentDiscount / 100;
+        double discount = (costPen + costBook) * percentDiscount / 100;
         System.out.println("Сумма скидки: " + discount);
-        System.out.println("Общая стоимость с учетом скидки: " + (pen + book - discount));
+        System.out.println("Общая стоимость с учетом скидки: " + (costPen + costBook - discount));
         
         System.out.println("\n3. Вывод на консоль слова JAVA");
         System.out.println("   J    a  v     v  a\n" +
-                           "   J   a a  v   v  a a\n" +
-                           "J  J  aaaaa  V V  aaaaa\n" +
-                           " JJ  a     a  V  a     a");
-        
+                "   J   a a  v   v  a a\n" +
+                "J  J  aaaaa  V V  aaaaa\n" +
+                " JJ  a     a  V  a     a");
+
         System.out.println("\n4. Отображение min и max значений числовых типов данных");
-        byte b = 127;
-        short s = 32_767;
-        int i = 2_147_483_647;
-        long l = 9_223_372_036_854_775_807L;
+        byte maxByte = 127;
+        short maxShort = 32_767;
+        int maxInt = 2_147_483_647;
+        long maxLong = 9_223_372_036_854_775_807L;
         System.out.println("Первоначальные значения целочисленных переменных:\n" +
-                "\tbyte: " + b + "; short: " + s + "; int: " + i + "; long: " + l);
+                "\tbyte: " + maxByte + "; short: " + maxShort + "; int: "
+                + maxInt + "; long: " + maxLong);
         System.out.println("Значения целочисленных переменных после инкремента:\n" +
-                "\tbyte: " + ++b + "; short: " + ++s + "; int: " + ++i + "; long: " + ++l);
+                "\tbyte: " + ++maxByte + "; short: " + ++maxShort + "; int: " +
+                ++maxInt + "; long: " + ++maxLong);
         System.out.println("Значения целочисленных переменных после декремента:\n" +
-                "\tbyte: " + --b + "; short: " + --s + "; int: " + --i + "; long: " + --l);
+                "\tbyte: " + --maxByte + "; short: " + --maxShort + "; int: " +
+                --maxInt + "; long: " + --maxLong);
 
         System.out.println("\n5. Перестановка значений переменных");
         int num1 = 2;
@@ -74,10 +77,10 @@ public class VariablesTheme {
         char ch4 = 94;
         char ch5 = 95;
         System.out.println((int) ch1 + "   " + ch1 + "\n" +
-                           (int) ch2 + "   " + ch2 + "\n" +
-                           (int) ch3 + "   " + ch3 + "\n" +
-                           (int) ch4 + "   " + ch4 + "\n" +
-                           (int) ch5 + "   " + ch5);
+                (int) ch2 + "   " + ch2 + "\n" +
+                (int) ch3 + "   " + ch3 + "\n" +
+                (int) ch4 + "   " + ch4 + "\n" +
+                (int) ch5 + "   " + ch5);
         
         System.out.println("\n7. Отображение количества сотен, десятков и единиц числа");
         int srcNum = 123;
@@ -87,20 +90,20 @@ public class VariablesTheme {
         System.out.println((srcNum % 10) + " единиц");
         
         System.out.println("\n8. Вывод на консоль ASCII-арт Дюка");
-        char forwardSlash = '/';
-        char backSlash = '\\';
+        char slash = '/';
+        char backslash = '\\';
         char leftBracket = '(';
         char rightBracket = ')';
         char lowLine = '_';
         char space = ' ';
-        System.out.println("" + space + space + space + space + forwardSlash + backSlash);
-        System.out.println("" + space + space + space + forwardSlash + space + space + backSlash);
-        System.out.println("" + space + space + forwardSlash + lowLine + leftBracket + space +
-                rightBracket + backSlash);
-        System.out.println("" + space + forwardSlash + space + space + space + space + space +
-                space + backSlash);
-        System.out.println("" + forwardSlash + lowLine + lowLine + lowLine + lowLine +
-                forwardSlash + backSlash + lowLine + lowLine + backSlash);
+        System.out.println("" + space + space + space + space + slash + backslash);
+        System.out.println("" + space + space + space + slash + space + space + backslash);
+        System.out.println("" + space + space + slash + lowLine + leftBracket + space +
+                rightBracket + backslash);
+        System.out.println("" + space + slash + space + space + space + space + space +
+                space + backslash);
+        System.out.println("" + slash + lowLine + lowLine + lowLine + lowLine +
+                slash + backslash + lowLine + lowLine + backslash);
 
         System.out.println("\n9. Произведение и сумма цифр числа");
         srcNum = 345;
