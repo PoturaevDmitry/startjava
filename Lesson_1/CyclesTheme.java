@@ -152,70 +152,38 @@ public class CyclesTheme {
 
         System.out.println("\n9. Определение, является ли число счастливым");
         srcNum = 456961;
-        copySrcNum = srcNum;
-        counter = 0;
-        int maxNumDigits = 6;
+        int srcNum1 = srcNum % 1000;
+        int srcNum2 = srcNum / 1000;
         int sum1 = 0;
         int sum2 = 0;
-        while (srcNum != 0) {
-            if (counter % (maxNumDigits / 2) == 0) {
-                System.out.print("Сумма цифр ");
-            }
-            int digit = srcNum % 10;
-            System.out.print(digit);
-            if (counter < maxNumDigits / 2) {
-                sum1 += digit;
-            } else {
-                sum2 += digit;
-            }
-            counter++;
-            if (counter == maxNumDigits / 2) {
-                System.out.println(" = " + sum1);
-            }
-            if (counter == maxNumDigits) {
-                System.out.println(" = " + sum2);
-            }
-            srcNum /= 10;
+        while (srcNum1 != 0 && srcNum2 != 0) {
+            sum1 += srcNum1 % 10;
+            srcNum1 /= 10;
+            sum2 += srcNum2 % 10;
+            srcNum2 /= 10;
         }
-        System.out.print("Число " + copySrcNum);
-        if (counter == maxNumDigits && sum1 == sum2) {
-            System.out.println(" является счастливым");
-        } else {
-            System.out.println(" не является счастливым");
-        }
+        System.out.println("Сумма цифр " + srcNum % 1000 + " = " + sum1);
+        System.out.println("Сумма цифр " + srcNum / 1000 + " = " + sum2);
+        System.out.println("Число " + srcNum + ((sum1 == sum2) ? " " : " не ") +
+                "является счастливым");
 
         System.out.println("\n10. Вывод таблицы умножения Пифагора");
-        for (int i = 0; i < 10; i++) {
-            if (i == 0) {
-                System.out.printf("%3s", " ");
-            } else if (i == 1) {
-                System.out.printf("%s", "|");
-            } else {
-                System.out.printf("%3d", i);
-            }
+        System.out.printf("%4s", "|");
+        for (int i = 2; i < 10; i++) {
+            System.out.printf("%3d", i);
         }
-        System.out.println();
 
-        for (int i = 0; i < 10; i++) {
-            if (i != 1) {
-                System.out.printf("%s", "---");
-            } else {
-                System.out.printf("%s", "|");
-            }
+        System.out.printf("%n%s", "---|");
+        for (int i = 2; i < 10; i++) {
+            System.out.printf("%s", "---");
         }
-        System.out.println();
 
         for (int i = 2; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (j == 0) {
-                    System.out.printf("%2d", i);
-                } else if (j == 1) {
-                    System.out.printf("%2s", "|");
-                } else {
-                    System.out.printf("%3d", i * j);
-                }
+            System.out.printf("%n%2d%2s", i, "|");
+            for (int j = 2; j < 10; j++) {
+                System.out.printf("%3d", i * j);
             }
-            System.out.println();
         }
+        System.out.println();
     }
 }
