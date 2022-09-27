@@ -2,23 +2,23 @@ public class Person {
 
     String gender = "male";
     String name = "Ivan";
-    double growth = 1.73;
+    double height = 1.73;
     double weight = 75.4;
     int age = 37;
 
-    void toGo() {
+    void go() {
         System.out.println("Я иду");
     }
 
-    void toSit() {
+    void sit() {
         System.out.println("Я сижу");
     }
 
-    void toRun() {
+    void run() {
         System.out.println("Я бегу");
     }
 
-    String toSpeak() {
+    String speak() {
         return "Бла-бла-бла";
     }
 
