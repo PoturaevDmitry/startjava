@@ -5,8 +5,8 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
-        boolean exit = false;
-        while(!exit) {
+        String answer = "";
+        do {
             System.out.println("Введите первое число: ");
             int num1 = scanner.nextInt();
             scanner.nextLine();
@@ -17,15 +17,10 @@ public class CalculatorTest {
             scanner.nextLine();
             int result = calculator.calculate(num1, num2, sign);
             System.out.println(num1 + " " + sign + " " + num2 + " = " + result);
-            while(!exit) {
+            do {
                 System.out.println("Хотите продолжить вычисления? [yes/no]:");
-                String answer = scanner.nextLine();
-                if ("yes".equals(answer)) {
-                    break;
-                } else if ("no".equals(answer)) {
-                    exit = true;
-                }
-            }
-        }
+                answer = scanner.nextLine();
+            } while(!answer.equals("no") && !answer.equals("yes"));
+        } while(!answer.equals("no"));
     }
 }
