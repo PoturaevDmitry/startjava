@@ -21,14 +21,14 @@ public class GuessNumber {
             playerNum = scanner.nextInt();
             if (playerNum == secretNum) {
                 System.out.println("Победил игрок " + currentPlayer.getName());
-            } else {
-                if (playerNum > secretNum) {
-                    System.out.println("число " + playerNum + " больше того, что загадал компьютер");
-                } else if (playerNum < secretNum) {
-                    System.out.println("число " + playerNum + " меньше того, что загадал компьютер");
-                }
-                currentPlayer = currentPlayer == player1 ? player2 : player1;
+                break;
             }
-        } while (playerNum != secretNum);
+            if (playerNum > secretNum) {
+                System.out.println("число " + playerNum + " больше того, что загадал компьютер");
+            } else if (playerNum < secretNum) {
+                System.out.println("число " + playerNum + " меньше того, что загадал компьютер");
+            }
+            currentPlayer = currentPlayer == player1 ? player2 : player1;
+        } while (true);
     }
 }
