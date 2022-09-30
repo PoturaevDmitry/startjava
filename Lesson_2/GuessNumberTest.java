@@ -12,11 +12,11 @@ public class GuessNumberTest {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите имя первого игрока: ");
-        String namePlayer1 = scanner.nextLine();
+        String name1 = scanner.nextLine();
         System.out.print("Введите имя второго игрока: ");
-        String namePlayer2 = scanner.nextLine();
+        String name2 = scanner.nextLine();
 
-        GuessNumber game = new GuessNumber(new Player(namePlayer1), new Player(namePlayer2));
+        GuessNumber game = new GuessNumber(new Player(name1), new Player(name2));
 
         String answer = "";
         do {
