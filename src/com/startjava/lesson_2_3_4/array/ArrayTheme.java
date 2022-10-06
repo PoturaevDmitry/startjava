@@ -9,12 +9,12 @@ public class ArrayTheme {
         int[] intArr = {5, 3, 1, 4, 7, 2, 6};
         printIntArray("Исходный массив:", intArr);
         int length = intArr.length;
-        for (int i = 0; i < length / 2; i++) {
+        for (int i = 0; i < length; i++) {
             int tmp = intArr[i];
-            intArr[i] = intArr[length - 1 - i];
-            intArr[length - 1 - i] = tmp;
+            intArr[i] = intArr[--length];
+            intArr[length] = tmp;
         }
-        printIntArray("Реверсированный массив:", intArr);
+        printIntArray("Реверсивный массив:", intArr);
 
         System.out.println("\n2. Вывод произведения элементов массива");
         length = 10;
@@ -37,25 +37,26 @@ public class ArrayTheme {
             doubleArr[i] = Math.random();
         }
         printDoubleArray("Исходный массив:", doubleArr);
-        int counter = 0;
+        int cntZeroCells = 0;
+        double middleNum = doubleArr[length / 2];
         for (int i = 0; i < length; i++) {
-            if (doubleArr[i] > doubleArr[length / 2]) {
+            if (doubleArr[i] > middleNum) {
                 doubleArr[i] = 0;
-                counter++;
+                cntZeroCells++;
             }
         }
         printDoubleArray("Измененный массив:", doubleArr);
-        System.out.println("Количество обнуленных ячеек: " + counter);
+        System.out.println("Количество обнуленных ячеек: " + cntZeroCells);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
         length = 'Z' - 'A' + 1;
-        char[] letters = new char[length];
+        char[] uppercaseEnglishLetters = new char[length];
         for (int i = 0; i < length; i++) {
-            letters[i] = (char) ('A' + i);
+            uppercaseEnglishLetters[i] = (char) ('A' + i);
         }
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < i + 1; j++) {
-                System.out.print(letters[length - 1 - j]);
+                System.out.print(uppercaseEnglishLetters[length - 1 - j]);
             }
             System.out.println();
         }
@@ -74,32 +75,30 @@ public class ArrayTheme {
         }
 
         System.out.println("\n6. Сдвиг элементов массива");
-        String[] strings1 = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
-        System.out.println("Исходный массив: " + Arrays.toString(strings1));
+        String[] srcStringsArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        System.out.println("Исходный массив: " + Arrays.toString(srcStringsArr));
         length = 0;
-        for (String string : strings1) {
-            if (!string.isBlank()) {
-                length++;
-            }
+        for (String string : srcStringsArr) {
+            if (!string.isBlank()) length++;
         }
-        String[] strings2 = new String[length];
+        String[] destStringsArr = new String[length];
         length = 0;
         int srcPos = 0;
         int destPos = 0;
-        for (int i = 0; i < strings1.length; i++) {
-            if (!strings1[i].isBlank()) {
-                if (length == 0) {
-                    srcPos = i;
-                }
+        for (int i = 0; i < srcStringsArr.length; i++) {
+            boolean stringIsBlank = srcStringsArr[i].isBlank();
+            if (!stringIsBlank) {
+                if (length == 0) srcPos = i;
                 length++;
             }
-            if (length != 0 && (strings1[i].isBlank() || i == strings1.length - 1)) {
-                System.arraycopy(strings1, srcPos, strings2, destPos, length);
+            boolean lastString = i == srcStringsArr.length - 1;
+            if (length != 0 && (stringIsBlank || lastString)) {
+                System.arraycopy(srcStringsArr, srcPos, destStringsArr, destPos, length);
                 destPos += length;
                 length = 0;
             }
         }
-        System.out.println("Измененный массив: " + Arrays.toString(strings2));
+        System.out.println("Измененный массив: " + Arrays.toString(destStringsArr));
     }
 
     private static void printIntArray(String caption, int[] array) {
