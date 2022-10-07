@@ -50,13 +50,13 @@ public class ArrayTheme {
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
         length = 'Z' - 'A' + 1;
-        char[] uppercaseEnglishLetters = new char[length];
+        char[] engLetters = new char[length];
         for (int i = 0; i < length; i++) {
-            uppercaseEnglishLetters[i] = (char) ('A' + i);
+            engLetters[i] = (char) ('A' + i);
         }
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < i + 1; j++) {
-                System.out.print(uppercaseEnglishLetters[length - 1 - j]);
+                System.out.print(engLetters[length - 1 - j]);
             }
             System.out.println();
         }
