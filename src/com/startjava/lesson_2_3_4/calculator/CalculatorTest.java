@@ -5,16 +5,20 @@ import java.util.Scanner;
 public class CalculatorTest {
 
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
         String answer;
         do {
             System.out.print("Введите математическое выражение: ");
-            String[] mathExpression = scanner.nextLine().split(" ");
-            int num1 = Integer.parseInt(mathExpression[0]);
-            char sign = mathExpression[1].charAt(0);
-            int num2 = Integer.parseInt(mathExpression[2]);
-            System.out.println("Результат: " + calculator.calculate(num1, num2, sign));
+            do {
+                String[] mathExpression = scanner.nextLine().split(" ");
+                try {
+                    System.out.println("Результат: " + Calculator.calculate(mathExpression));
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Введенное выражение содержит некорректные данные...");
+                    System.out.println("Введите корректное математическое выражение: ");
+                }
+            } while (true);
             do {
                 System.out.println("Хотите продолжить вычисления? [yes/no]:");
                 answer = scanner.nextLine();
