@@ -35,6 +35,7 @@ public class Calculator {
 
     private static int extractIntNumber(String string) {
         if (!isNumeric(string)) throw new IllegalArgumentException("введенно значение, не являющееся числом");
+        if (!isIntegerNumber(string)) throw new IllegalArgumentException("введено слишком большие число");
         try {
             int number = Integer.parseInt(string);
             if (number < 0) throw new IllegalArgumentException("введено отрицательное число");
@@ -56,5 +57,9 @@ public class Calculator {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private static boolean isIntegerNumber(String string) {
+        return Double.parseDouble(string) <= Integer.MAX_VALUE;
     }
 }
