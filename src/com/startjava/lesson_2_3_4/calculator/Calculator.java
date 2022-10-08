@@ -6,34 +6,55 @@ public class Calculator {
     private static int num2;
     private static char operation;
 
-    public static int calculate(String[] expression) {
-        parsExpression(expression);
+    public static int calculate(String expression) {
+        parseExpression(expression);
         return switch (operation) {
             case '+' -> Math.addExact(num1, num2);
             case '-' -> Math.subtractExact(num1, num2);
             case '*' -> Math.multiplyExact(num1, num2);
-            case '/' -> Math.floorDiv(num1, num2);
+            case '/' -> {
+                if (num2 == 0) throw new IllegalArgumentException("деление на ноль невозможно");
+                yield Math.floorDiv(num1, num2);
+            }
             case '^' -> (int) Math.pow(num1, num2);
-            case '%' -> num1 % num2;
-            default -> throw new IllegalArgumentException();
+            case '%' -> {
+                if (num2 == 0) throw new IllegalArgumentException("деление на ноль невозможно");
+                yield num1 % num2;
+            }
+            default -> throw new IllegalArgumentException("введена неподдерживаемая операция");
         };
     }
 
-    private static void parsExpression(String[] expression) {
-        if (expression.length != 3) throw new IllegalArgumentException();
-        num1 = getNumber(expression[0]);
-        num2 = getNumber(expression[2]);
-        operation = getOperation(expression[1]);
+    private static void parseExpression(String expression) {
+        String[] mathExpression = expression.split(" ");
+        if (mathExpression.length != 3) throw new IllegalArgumentException("выражение имеет неверный формат");
+        num1 = extractIntNumber(mathExpression[0]);
+        num2 = extractIntNumber(mathExpression[2]);
+        operation = extractMathOperation(mathExpression[1]);
     }
 
-    private static int getNumber(String string) {
-        int number = Integer.parseInt(string);
-        if (number < 0) throw new IllegalArgumentException();
-        return number;
+    private static int extractIntNumber(String string) {
+        if (!isNumeric(string)) throw new IllegalArgumentException("введенно значение, не являющееся числом");
+        try {
+            int number = Integer.parseInt(string);
+            if (number < 0) throw new IllegalArgumentException("введено отрицательное число");
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("введено не целое число");
+        }
     }
 
-    private static char getOperation(String string) {
-        if (string.length() != 1) return ' ';
+    private static char extractMathOperation(String string) {
+        if (string.length() != 1) throw new IllegalArgumentException("неверный формат математической операции");
         return string.charAt(0);
+    }
+
+    private static boolean isNumeric(String string) {
+        try {
+            Double.parseDouble(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

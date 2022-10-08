@@ -10,14 +10,13 @@ public class CalculatorTest {
         do {
             System.out.print("Введите математическое выражение: ");
             do {
-                String[] mathExpression = scanner.nextLine().split(" ");
                 try {
-                    System.out.println("Результат: " + Calculator.calculate(mathExpression));
+                    System.out.println("Результат: " + Calculator.calculate(scanner.nextLine()));
                     break;
-                } catch (Exception e) {
-                    System.out.println("Введенное выражение содержит некорректные данные...");
-                    System.out.println("Введите корректное математическое выражение: ");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Введенное выражение содержит некорректные данные... " + e.getMessage());
                 }
+                System.out.print("Введите корректное математическое выражение: ");
             } while (true);
             do {
                 System.out.println("Хотите продолжить вычисления? [yes/no]:");
