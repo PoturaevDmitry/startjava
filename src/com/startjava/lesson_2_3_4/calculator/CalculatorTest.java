@@ -15,6 +15,9 @@ public class CalculatorTest {
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println("Введенное выражение содержит некорректные данные... " + e.getMessage());
+                } catch (ArithmeticException e) {
+                    System.out.println("Введенное выражение содержит некорректные данные... " +
+                            "введены слишком большие значения");
                 }
                 System.out.print("Введите корректное математическое выражение: ");
             } while (true);
