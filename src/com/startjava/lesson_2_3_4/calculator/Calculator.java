@@ -26,11 +26,11 @@ public class Calculator {
     }
 
     private static void parseExpression(String expression) {
-        String[] mathExpression = expression.split(" ");
-        if (mathExpression.length != 3) throw new IllegalArgumentException("выражение имеет неверный формат");
-        num1 = parsePositiveInt(mathExpression[0]);
-        num2 = parsePositiveInt(mathExpression[2]);
-        operation = parseMathOperation(mathExpression[1]);
+        String[] partsExpression = expression.split(" ");
+        if (partsExpression.length != 3) throw new IllegalArgumentException("выражение имеет неверный формат");
+        num1 = parsePositiveInt(partsExpression[0]);
+        num2 = parsePositiveInt(partsExpression[2]);
+        operation = parseMathOperation(partsExpression[1]);
     }
 
     private static int parsePositiveInt(String string) {
@@ -40,9 +40,9 @@ public class Calculator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("введенно значение, не являющееся числом");
         }
+        if (number < 0) throw new IllegalArgumentException("введено отрицательное число");
         if (number > Integer.MAX_VALUE)
             throw new IllegalArgumentException("введено слишком большие число");
-        if (number < 0) throw new IllegalArgumentException("введено отрицательное число");
         if (number - (int) number != 0) throw new IllegalArgumentException("введено не целое число");
         return (int) number;
     }
