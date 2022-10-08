@@ -28,38 +28,27 @@ public class Calculator {
     private static void parseExpression(String expression) {
         String[] mathExpression = expression.split(" ");
         if (mathExpression.length != 3) throw new IllegalArgumentException("выражение имеет неверный формат");
-        num1 = extractIntNumber(mathExpression[0]);
-        num2 = extractIntNumber(mathExpression[2]);
-        operation = extractMathOperation(mathExpression[1]);
+        num1 = parsePositiveInt(mathExpression[0]);
+        num2 = parsePositiveInt(mathExpression[2]);
+        operation = parseMathOperation(mathExpression[1]);
     }
 
-    private static int extractIntNumber(String string) {
-        if (!isNumeric(string)) throw new IllegalArgumentException("введенно значение, не являющееся числом");
-        if (!isIntegerNumber(string)) throw new IllegalArgumentException("введено слишком большие число");
+    private static int parsePositiveInt(String string) {
+        double number;
         try {
-            int number = Integer.parseInt(string);
-            if (number < 0) throw new IllegalArgumentException("введено отрицательное число");
-            return number;
+            number = Double.parseDouble(string);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("введено не целое число");
+            throw new IllegalArgumentException("введенно значение, не являющееся числом");
         }
+        if (number > Integer.MAX_VALUE)
+            throw new IllegalArgumentException("введено слишком большие число");
+        if (number < 0) throw new IllegalArgumentException("введено отрицательное число");
+        if (number - (int) number != 0) throw new IllegalArgumentException("введено не целое число");
+        return (int) number;
     }
 
-    private static char extractMathOperation(String string) {
+    private static char parseMathOperation(String string) {
         if (string.length() != 1) throw new IllegalArgumentException("неверный формат математической операции");
         return string.charAt(0);
-    }
-
-    private static boolean isNumeric(String string) {
-        try {
-            Double.parseDouble(string);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private static boolean isIntegerNumber(String string) {
-        return Double.parseDouble(string) <= Integer.MAX_VALUE;
     }
 }
