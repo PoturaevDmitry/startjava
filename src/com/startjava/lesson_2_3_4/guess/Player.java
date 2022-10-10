@@ -1,7 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Player {
 
@@ -18,27 +17,20 @@ public class Player {
         return name;
     }
 
+    public int[] getEnteredNums() {
+        return Arrays.copyOf(enteredNums, countAttempts);
+    }
+
     public int getCountAttempts() {
         return countAttempts;
     }
 
     public void reset() {
-        if (countAttempts > 0) Arrays.fill(enteredNums, 0, countAttempts - 1, 0);
+        Arrays.fill(enteredNums, 0, countAttempts, 0);
         countAttempts = 0;
     }
 
-    public int[] getEnteredNums() {
-        return Arrays.copyOf(enteredNums, countAttempts);
-    }
-
-    public int guess() {
-        Scanner scanner = new Scanner(System.in);
-        int playerNum = scanner.nextInt();
-        setEnteredNum(playerNum);
-        return playerNum;
-    }
-
-    private void setEnteredNum(int enteredNum) {
+    public void addEnteredNum(int enteredNum) {
         enteredNums[countAttempts++] = enteredNum;
     }
 }
