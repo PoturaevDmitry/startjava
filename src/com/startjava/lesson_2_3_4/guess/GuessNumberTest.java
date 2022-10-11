@@ -11,6 +11,7 @@ public class GuessNumberTest {
                  - в игре участвуют два игрока
                  - компьютер загадывает число от 1 до 100
                  - игроки по очереди пытаются угадать число
+                 - очередность ходов определяет компьютер
                  - выигрывает игрок, первым угадавший число
                 """);
 
@@ -19,8 +20,10 @@ public class GuessNumberTest {
         String name1 = scanner.nextLine();
         System.out.print("Введите имя второго игрока: ");
         String name2 = scanner.nextLine();
+        System.out.print("Введите имя третьего игрока: ");
+        String name3 = scanner.nextLine();
 
-        GuessNumber game = new GuessNumber(name1, name2);
+        GuessNumber game = new GuessNumber(name1, name2, name3);
 
         String answer;
         do {
