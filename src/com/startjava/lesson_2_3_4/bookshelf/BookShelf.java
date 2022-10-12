@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class BookShelf {
 
-    public static final int MAX_SHELF_LENGTH = 48;
     public static final int MAX_COUNT_PLACES = 10;
     private final Book[] books = new Book[MAX_COUNT_PLACES];
     private int countBooks;
@@ -45,6 +44,16 @@ public class BookShelf {
     public void clear() {
         Arrays.fill(books, null);
         countBooks = 0;
+    }
+
+    public int calcLengthShelf() {
+        if (countBooks == 0) return 0;
+        int maxLen = books[0].toString().length();
+        for (int i = 1; i < countBooks && books[i] != null; i++) {
+            int curLen = books[i].toString().length();
+            if (maxLen < curLen) maxLen = curLen;
+        }
+        return maxLen;
     }
 
     private int indexOf(String title) {

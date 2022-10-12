@@ -19,7 +19,7 @@ public class SimpleLibrary {
 
     private void showBookShelf() {
         String border = "|";
-        String delimiter = "-".repeat(BookShelf.MAX_SHELF_LENGTH);
+        String delimiter = "-".repeat(bookShelf.calcLengthShelf());
         System.out.println("\n" + border + delimiter + border);
         for (Book book : bookShelf.getBooks()) {
             System.out.println(border + (book != null ?
