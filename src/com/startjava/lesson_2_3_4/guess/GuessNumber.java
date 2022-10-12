@@ -1,5 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GuessNumber {
@@ -73,10 +74,11 @@ public class GuessNumber {
     private int guess() {
         while (true) {
             try {
-                int playerNum = Integer.parseInt(scanner.nextLine());
+                int playerNum = scanner.nextInt();
                 currentPlayer.addEnteredNum(playerNum);
                 return playerNum;
-            } catch (IllegalArgumentException e) {
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                scanner.nextLine();
                 System.out.println("Ошибка ввода! Необходимо ввести целое число из диапазона от 1 до 100...");
             }
         }
