@@ -18,21 +18,24 @@ public class SimpleLibrary {
     }
 
     private void showBookShelf() {
-        String border = "|";
-        String delimiter = "-".repeat(bookShelf.calcLengthShelf());
-        System.out.println("\n" + border + delimiter + border);
+        if (bookShelf.getCountBooks() == 0) {
+            System.out.println("Полка пуста. Вы можете добавить в нее первую книгу");
+            return;
+        }
+        String delimiter = "-".repeat(bookShelf.getMaxLengthShelf());
+        System.out.println("\n" + '|' + delimiter + '|');
         for (Book book : bookShelf.getBooks()) {
-            System.out.println(border + (book != null ?
+            System.out.println('|' + (book != null ?
                     book + " ".repeat(delimiter.length() - book.toString().length()) :
-                    " ".repeat(delimiter.length())) + border);
-            System.out.println(border + delimiter + border);
+                    " ".repeat(delimiter.length())) + '|');
+            System.out.println('|' + delimiter + '|');
         }
         System.out.println();
     }
 
     private void showMenu() {
         System.out.println("""
-                Меню задач:
+                Меню команд:
                  1. Добавить книгу.
                  2. Найти книгу.
                  3. Отобразить информацию о загрузке полки.
@@ -43,7 +46,7 @@ public class SimpleLibrary {
     }
 
     private int inputAction() {
-        System.out.print("Введите номер задачи от 0 до 5: ");
+        System.out.print("Введите номер команды от 0 до 5: ");
         while (true) {
             try {
                 int action = Integer.parseInt(scanner.nextLine());
@@ -78,6 +81,7 @@ public class SimpleLibrary {
         }
         System.out.print("Для продолжения работы нажмите клавишу Enter");
         scanner.nextLine();
+        System.out.println();
         return true;
     }
 
@@ -109,7 +113,7 @@ public class SimpleLibrary {
 
     private void showBookShelfInfo() {
         System.out.println("Книг на полке: " + bookShelf.getCountBooks() +
-                ", свободных мест: " + bookShelf.checkFreePlaces());
+                ", свободных мест: " + bookShelf.hasFreePlace());
     }
 
     private void deleteBook() {

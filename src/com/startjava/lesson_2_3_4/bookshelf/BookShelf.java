@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class BookShelf {
 
-    public static final int MAX_COUNT_PLACES = 10;
-    private final Book[] books = new Book[MAX_COUNT_PLACES];
+    private static final int CAPACITY = 10;
+    private final Book[] books = new Book[CAPACITY];
     private int countBooks;
+    private int maxLengthShelf;
 
     public Book[] getBooks() {
         return Arrays.copyOf(books, books.length);
@@ -16,20 +17,27 @@ public class BookShelf {
         return countBooks;
     }
 
+    public int getMaxLengthShelf() {
+        return maxLengthShelf;
+    }
+
     public boolean add(Book book) {
-        if (countBooks == MAX_COUNT_PLACES) return false;
+        if (countBooks == CAPACITY) return false;
+        int len = book.toString().length();
+        if (countBooks == 0  || maxLengthShelf < len) maxLengthShelf = len;
         books[countBooks++] = book;
+        updateMaxLengthShelf();
         return true;
     }
 
     public Book find(String title) {
         int index = indexOf(title);
         if (index == -1) return null;
-        return new Book(books[index].getAuthor(), books[index].getTitle(), books[index].getPublishYear());
+        return books[index];
     }
 
-    public int checkFreePlaces() {
-        return MAX_COUNT_PLACES - countBooks;
+    public int hasFreePlace() {
+        return CAPACITY - countBooks;
     }
 
     public boolean delete(String title) {
@@ -38,22 +46,26 @@ public class BookShelf {
         countBooks--;
         if (index < books.length - 1) System.arraycopy(books, index + 1, books, index, countBooks - index);
         books[countBooks] = null;
+        updateMaxLengthShelf();
         return true;
     }
 
     public void clear() {
-        Arrays.fill(books, null);
+        Arrays.fill(books, 0, countBooks, null);
         countBooks = 0;
+        updateMaxLengthShelf();
     }
 
-    public int calcLengthShelf() {
-        if (countBooks == 0) return 0;
-        int maxLen = books[0].toString().length();
-        for (int i = 1; i < countBooks && books[i] != null; i++) {
-            int curLen = books[i].toString().length();
-            if (maxLen < curLen) maxLen = curLen;
+    private void updateMaxLengthShelf() {
+        if (countBooks == 0) {
+            maxLengthShelf = 0;
+        } else {
+            maxLengthShelf = books[0].toString().length();
+            for (int i = 1; i < countBooks; i++) {
+                int curLen = books[i].toString().length();
+                if (maxLengthShelf < curLen) maxLengthShelf = curLen;
+            }
         }
-        return maxLen;
     }
 
     private int indexOf(String title) {

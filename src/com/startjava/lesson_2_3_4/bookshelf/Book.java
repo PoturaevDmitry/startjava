@@ -12,16 +12,8 @@ public class Book {
         this.publishYear = publishYear;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public String getPublishYear() {
-        return publishYear;
     }
 
     @Override
