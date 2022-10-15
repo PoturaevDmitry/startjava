@@ -23,7 +23,7 @@ public class SimpleLibrary {
             return;
         }
         String delimiter = "-".repeat(bookShelf.getMaxLengthShelf());
-        System.out.println("\n" + '|' + delimiter + '|');
+        System.out.println('|' + delimiter + '|');
         for (Book book : bookShelf.getBooks()) {
             System.out.println('|' + (book != null ?
                     book + " ".repeat(delimiter.length() - book.toString().length()) :
