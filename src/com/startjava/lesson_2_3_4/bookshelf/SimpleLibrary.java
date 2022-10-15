@@ -8,17 +8,13 @@ public class SimpleLibrary {
     private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        new SimpleLibrary().execute();
-    }
-
-    public void execute() {
-        boolean run;
+        SimpleLibrary simpleLibrary = new SimpleLibrary();
+        int userAction;
         do {
-            showBookShelf();
-            showMenu();
-            int action = inputAction();
-            run = userAction(action);
-        } while (run);
+            simpleLibrary.showBookShelf();
+            simpleLibrary.showMenu();
+            userAction = simpleLibrary.inputAction();
+        } while (simpleLibrary.executeAction(userAction));
     }
 
     private void showBookShelf() {
@@ -62,7 +58,7 @@ public class SimpleLibrary {
         }
     }
 
-    private boolean userAction(int action) {
+    private boolean executeAction(int action) {
         switch (action) {
             case 0: return false;
             case 1:

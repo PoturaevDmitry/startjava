@@ -11,8 +11,6 @@ public class BookShelf {
 
     public boolean add(Book book) {
         if (countBooks == CAPACITY) return false;
-        int len = book.toString().length();
-        if (countBooks == 0  || maxLengthShelf < len) maxLengthShelf = len;
         books[countBooks++] = book;
         updateMaxLengthShelf();
         return true;
@@ -31,10 +29,11 @@ public class BookShelf {
     public boolean delete(String title) {
         int index = indexOf(title);
         if (index == -1) return false;
+        int lenRecord = books[index].toString().length();
         countBooks--;
         if (index < books.length - 1) System.arraycopy(books, index + 1, books, index, countBooks - index);
         books[countBooks] = null;
-        updateMaxLengthShelf();
+        if (lenRecord >= maxLengthShelf) updateMaxLengthShelf();
         return true;
     }
 
