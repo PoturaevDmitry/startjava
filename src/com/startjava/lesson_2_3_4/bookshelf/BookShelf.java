@@ -9,18 +9,6 @@ public class BookShelf {
     private int countBooks;
     private int maxLengthShelf;
 
-    public Book[] getBooks() {
-        return Arrays.copyOf(books, books.length);
-    }
-
-    public int getCountBooks() {
-        return countBooks;
-    }
-
-    public int getMaxLengthShelf() {
-        return maxLengthShelf;
-    }
-
     public boolean add(Book book) {
         if (countBooks == CAPACITY) return false;
         int len = book.toString().length();
@@ -54,6 +42,18 @@ public class BookShelf {
         Arrays.fill(books, 0, countBooks, null);
         countBooks = 0;
         updateMaxLengthShelf();
+    }
+
+    public Book[] getBooks() {
+        return Arrays.copyOf(books, books.length);
+    }
+
+    public int getCountBooks() {
+        return countBooks;
+    }
+
+    public int getMaxLengthShelf() {
+        return maxLengthShelf;
     }
 
     private void updateMaxLengthShelf() {

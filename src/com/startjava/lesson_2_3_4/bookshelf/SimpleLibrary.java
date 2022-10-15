@@ -7,6 +7,10 @@ public class SimpleLibrary {
     private final BookShelf bookShelf = new BookShelf();
     private final Scanner scanner = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        new SimpleLibrary().execute();
+    }
+
     public void execute() {
         boolean run;
         do {
